@@ -309,7 +309,7 @@ export function App() {
                     '많이 떨어질 때 더 사기',
                     '하락 추세에서 BTC 줄이기',
                     '위험할 때 BTC 줄이기',
-                    '현금을 많이 들고 있기',
+                    '강한 상승세에 추가 매수',
                   ].map((name) => (
                     <div key={name} className="p-2.5 rounded-lg bg-zinc-950 border border-zinc-800/80 flex items-center justify-between">
                       <span className="text-zinc-300 truncate text-[11px]">{name}</span>

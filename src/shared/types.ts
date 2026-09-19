@@ -39,7 +39,7 @@ export type StrategyId =
   | 'buy-dip'
   | 'trend'
   | 'risk-control'
-  | 'cash-heavy'
+  | 'momentum'
 
 export type StrategyResult = {
   id: StrategyId

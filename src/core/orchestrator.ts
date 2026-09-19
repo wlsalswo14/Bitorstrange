@@ -16,7 +16,7 @@ const STRATEGY_IDS: StrategyId[] = [
   'buy-dip',
   'trend',
   'risk-control',
-  'cash-heavy',
+  'momentum',
 ]
 
 export async function runMultiverse(request: RunRequest): Promise<RunResult> {

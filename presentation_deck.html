@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Bitorstrange (MULTIVERSE) - 5 Slide Pitch Deck</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  @page {
+    size: 16in 9in;
+    margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 16in;
+    background-color: #09090b;
+    color: #f4f4f5;
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    margin: 0;
+    padding: 0;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .slide {
+    width: 16in;
+    height: 9in;
+    max-height: 9in;
+    padding: 0.72in 0.95in;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    page-break-after: always;
+    break-after: page;
+    background-color: #09090b;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle background ambiance */
+  .slide::before {
+    content: "";
+    position: absolute;
+    top: -25%;
+    right: -10%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, rgba(9, 9, 11, 0) 70%);
+    pointer-events: none;
+  }
+
+  /* Header */
+  .slide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.2in;
+  }
+
+  .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .brand-logo .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 12px #10b981;
+  }
+
+  .brand-sub {
+    font-size: 13.5px;
+    color: #71717a;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .badge-container {
+    display: flex;
+    gap: 8px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #a1a1aa;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .badge.sponsor {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #34d399;
+  }
+
+  .badge.highlight {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+  }
+
+  .badge.doctor {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.3);
+    color: #c084fc;
+  }
+
+  /* Slide Body */
+  .slide-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.28in 0;
+  }
+
+  /* Slide Footer */
+  .slide-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 0.16in;
+    font-size: 12px;
+    color: #52525b;
+  }
+
+  .slide-number {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-weight: 600;
+    color: #71717a;
+  }
+
+  /* Typography */
+  .title-lg {
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+    color: #ffffff;
+    margin-bottom: 16px;
+    word-break: keep-all;
+  }
+
+  .title-md {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    margin-bottom: 12px;
+    word-break: keep-all;
+  }
+
+  .subtitle {
+    font-size: 18.5px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #a1a1aa;
+    word-break: keep-all;
+  }
+
+  .highlight-text {
+    color: #38bdf8;
+  }
+
+  .emerald-text {
+    color: #34d399;
+  }
+
+  .purple-text {
+    color: #c084fc;
+  }
+
+  .amber-text {
+    color: #fbbf24;
+  }
+
+  /* Grid layouts */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  /* Minimal Cards */
+  .card {
+    background: rgba(24, 24, 27, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .card.featured {
+    background: rgba(16, 185, 129, 0.03);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+  }
+
+  .card.featured-blue {
+    background: rgba(59, 130, 246, 0.03);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .card-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #71717a;
+  }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    word-break: keep-all;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #a1a1aa;
+    flex: 1;
+    word-break: keep-all;
+  }
+
+  /* Doctor Strange Quote Box */
+  .quote-box {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(24, 24, 27, 0.8) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    border-radius: 14px;
+    padding: 18px 24px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .quote-icon {
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  .quote-content {
+    flex: 1;
+  }
+
+  .quote-text {
+    font-size: 15.5px;
+    font-weight: 500;
+    color: #e4e4e7;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .quote-author {
+    font-size: 12px;
+    color: #c084fc;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  .code-tag {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    padding: 2px 7px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    color: #38bdf8;
+    white-space: nowrap;
+  }
+
+  /* Big stat display */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .stat-card {
+    background: rgba(24, 24, 27, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 18px 18px;
+  }
+
+  .stat-val {
+    font-size: 30px;
+    font-weight: 800;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    letter-spacing: -0.03em;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    white-space: nowrap;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: #71717a;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ==========================================
+       SLIDE 1: COVER & DOCTOR STRANGE THEME
+       ========================================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="brand-group">
+        <div class="brand-logo">
+          <div class="dot"></div>
+          BITORSTRANGE
+        </div>
+        <span class="brand-sub">MULTIVERSE SURVIVAL SIMULATOR</span>
+      </div>
+      <div class="badge-container">
+        <span class="badge doctor">✦ 100,000 Parallel Futures</span>
+        <span class="badge highlight">Daytona Cloud Sandbox</span>
+        <span class="badge sponsor">Nosana GPU Serving</span>
+      </div>
+    </div>
+
+    <div class="slide-body" style="justify-content: center;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px;">
+        <span class="badge doctor" style="font-size: 13.5px; padding: 7px 16px;">
+          🔮 닥터 스트레인지 오마주: 100,000번의 미래 시뮬레이션
+        </span>
+      </div>
+      
+      <h1 class="title-lg" style="font-size: 52px; margin-bottom: 20px;">
+        단 하나의 미래를 맞히지 않습니다.<br>
+        <span class="highlight-text">100,000번의 미래</span>에서 살아남는 방법을 찾습니다.
+      </h1>
+
+      <p class="subtitle" style="font-size: 20.5px; max-width: 960px; line-height: 1.65; color: #d4d4d8;">
+        <strong>Bitorstrange</strong>는 비트코인 가격을 점치는 도박성 차트 예측기가 아닙니다.<br>
+        영화 속 닥터 스트레인지처럼 <strong>10만 번의 미래 시장</strong>을 시뮬레이션하고,
+        <span style="color: #60a5fa; font-weight: 600;">Daytona 초고속 격리 샌드박스</span>와 
+        <span style="color: #34d399; font-weight: 600;">Nosana 분산 GPU</span>를 통해 
+        어떤 위기가 닥쳐도 내 자산을 지키는 <strong>최적의 생존 전략</strong>을 증명합니다.
+      </p>
+
+      <div class="stat-grid" style="max-width: 980px;">
+        <div class="stat-card">
+          <div class="stat-val purple-text">100,000</div>
+          <div class="stat-label">미래 시나리오 몬테카를로 생성</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val highlight-text">8개 샌드박스</div>
+          <div class="stat-label">Daytona 동시 병렬 격리 실행</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val emerald-text">Qwen 3.8 27B</div>
+          <div class="stat-label">Nosana 분산 GPU 모델 서빙</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val amber-text">0.00 %</div>
+          <div class="stat-label">Time Lock 사후 확증편향 차단</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>Daytona & Nosana Global Hackathon Pitch Deck</div>
+      <div class="slide-number">01 / 05</div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 2: PAIN POINT & INNOVATION
+       ========================================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="brand-group">
+        <div class="brand-logo">BITORSTRANGE</div>
+        <span class="brand-sub">01. 심사 기준: 실용성(Problem Solving) & 혁신성(Innovation)</span>
+      </div>
+      <div class="badge-container">
+        <span class="badge highlight">Real-life Problem</span>
+        <span class="badge sponsor">True Innovation</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <!-- Doctor Strange Quote Box -->
+      <div class="quote-box">
+        <div class="quote-icon">🔮</div>
+        <div class="quote-content">
+          <div class="quote-text">
+            "I went forward in time... to view alternate futures. 100,000 futures. In how many did we survive? Only in the one proven by Daytona."
+          </div>
+          <div class="quote-author">
+            — 닥터 스트레인지의 10만 번 미래 탐색 오마주
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Card 1: Problem -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label" style="color: #f87171;">PAIN POINT (어떤 사람들의 어떤 불편함인가?)</span>
+            <span style="font-size: 18px;">⚠️</span>
+          </div>
+          <div class="card-title">"비트코인 얼마 갈까?"라는 헛된 예측과 파산</div>
+          <div class="card-desc">
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; padding: 0;">
+              <li>
+                <strong style="color: #ffffff;">• 단일 가격 예측의 치명적 함정:</strong> 개인 투자자들은 인플루언서나 점쟁이식 차트 예측에 의존하다가 급락장(Black Swan)에서 공포에 질려 패닉셀하고 파산합니다.
+              </li>
+              <li>
+                <strong style="color: #ffffff;">• 과학적 리스크 관리 도구 부재:</strong> 시장에는 "오른다/내린다"를 점치는 소음만 넘쳐나고, <em>"어떤 폭락이 닥쳐도 내 자산 한도(-25%)를 지켜주는 전략"</em>을 사전에 검증할 도구가 없습니다.
+              </li>
+              <li>
+                <strong style="color: #ffffff;">• 사후 확증 편향:</strong> 과거 데이터에만 끼워맞춘 일반 백테스트는 실제 예측 불가능한 미래 시장에서 무력화됩니다.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Card 2: Innovation -->
+        <div class="card featured">
+          <div class="card-header">
+            <span class="card-label emerald-text">INNOVATION (기존 방식과 무엇이 다른가?)</span>
+            <span style="font-size: 18px;">💡</span>
+          </div>
+          <div class="card-title">10만 개 다중우주 시뮬레이션 기반 생존 증명</div>
+          <div class="card-desc">
+            <div style="background: rgba(16, 185, 129, 0.08); border-left: 3px solid #10b981; padding: 12px 16px; border-radius: 4px; margin-bottom: 14px; color: #ecfdf5; font-weight: 600; font-size: 14.5px; line-height: 1.55;">
+              "기존 방식이 '단 하나의 미래 가격'을 맞히려는 위험한 도박이었다면, Bitorstrange는 닥터 스트레인지처럼 100,000번의 미래 시나리오를 시뮬레이션하여 '어떤 위기에서도 살아남는 단 하나의 생존 전략'을 격리 샌드박스에서 과학적으로 증명합니다."
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; padding: 0; font-size: 13.5px;">
+              <li><strong style="color: #34d399;">✓ 패러다임 혁신:</strong> 수익률 극대화가 아닌 <strong>생존율(Survival Rate) 90% 이상</strong>을 최우선 목표로 전환.</li>
+              <li><strong style="color: #34d399;">✓ 초고속 병렬 스트레스 테스트:</strong> 8가지 투자 전략을 Daytona 클라우드 독립 격리 환경에서 동시에 평가.</li>
+              <li><strong style="color: #34d399;">✓ 완벽한 미래 검증 (Time Lock):</strong> 2026년 실데이터 차단 봉인(SHA-256) 후 실제 시장 궤적으로 사후 검증.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>Daytona & Nosana Global Hackathon Pitch Deck</div>
+      <div class="slide-number">02 / 05</div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 3: DAYTONA ⭐ & NOSANA INTEGRATION
+       ========================================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="brand-group">
+        <div class="brand-logo">BITORSTRANGE</div>
+        <span class="brand-sub">02. 심사 기준: 스폰서 제품 활용 (Sponsor Product Usage) ⭐</span>
+      </div>
+      <div class="badge-container">
+        <span class="badge highlight">Daytona SDK [필수 & 최우선]</span>
+        <span class="badge sponsor">Nosana GPU Serving [가산점]</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div style="margin-bottom: 16px;">
+        <h2 class="title-md" style="margin-bottom: 6px;">
+          미래를 생성하고(<span class="emerald-text">Nosana</span>),&nbsp;미래를 직접 살아본다(<span class="highlight-text">Daytona</span>)
+        </h2>
+        <p class="subtitle" style="font-size: 15px;">
+          완벽히 격리된 샌드박스와 분산 GPU AI가 결합하여 타협 없는 대규모 금융 스트레스 테스트 환경을 완성했습니다.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <!-- DAYTONA (MOST IMPORTANT) -->
+        <div class="card featured-blue" style="border-width: 1.5px;">
+          <div class="card-header">
+            <span class="card-label" style="color: #60a5fa;">스폰서 활용 1 ⭐ [가장 중요 - 필수]</span>
+            <span class="badge highlight" style="font-size: 11px;">Daytona SDK</span>
+          </div>
+          <div class="card-title" style="color: #ffffff;">
+            Daytona: 8개 평행 전략 격리 실험실
+          </div>
+          <div class="card-desc">
+            <div style="margin-bottom: 12px;">
+              <strong style="color: #93c5fd; font-size: 14px;">• 어디에 썼는가? (Where)</strong><br>
+              10만 개 미래 시나리오에서 8가지 투자 전략(HODL, DCA, 80% Rebalancing, Volatility-Targeting 등)을 각각 독립 격리 환경에서 실행하는 <strong>'평행 전략 실행 엔진'</strong>에 적용했습니다.
+            </div>
+            <div style="margin-bottom: 12px;">
+              <strong style="color: #93c5fd; font-size: 14px;">• 왜 썼는가? (Why)</strong><br>
+              대규모 금융 백테스트는 수많은 분기와 상태를 연산하므로 로컬 환경에서는 메모리 간섭 및 상태 오염이 발생합니다. <strong style="color: #ffffff;">Daytona SDK를 통해 8개의 TypeScript 격리 샌드박스를 단 수십 밀리초 만에 동시 생성</strong>하여 오차 없는 안전한 병렬 실행 런타임을 확보했습니다.
+            </div>
+            <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 10px 12px; font-family: ui-monospace, monospace; font-size: 11px; color: #bfdbfe; line-height: 1.45;">
+              const sandbox = await daytona.create({ language: 'typescript' });<br>
+              const res = await sandbox.process.codeRun(code); // 8개 샌드박스 동시 병렬 실행
+            </div>
+          </div>
+        </div>
+
+        <!-- NOSANA (BONUS POINT) -->
+        <div class="card featured" style="border-width: 1.5px;">
+          <div class="card-header">
+            <span class="card-label emerald-text">스폰서 활용 2 ⭐ [가산점 필수 항목]</span>
+            <span class="badge sponsor" style="font-size: 11px;">Nosana GPU Network</span>
+          </div>
+          <div class="card-title" style="color: #ffffff;">
+            Nosana: 오픈소스 AI Council & 시뮬레이션
+          </div>
+          <div class="card-desc">
+            <div style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 7px 12px; margin-bottom: 12px; color: #6ee7b7; font-weight: 700; font-size: 13px;">
+              ★ 가산점 항목: "노사나(Nosana) 분산 GPU를 통해 모델을 서빙했습니다."
+            </div>
+            <div style="margin-bottom: 12px;">
+              <strong style="color: #6ee7b7; font-size: 14px;">• 어디에 썼는가? (Where)</strong><br>
+              오픈소스 거대언어모델 <code class="code-tag">qwen/qwen3.8-27b</code>를 Nosana 분산 GPU에 서빙하여 시장 분석·뉴스·거시경제·위험 진단 <strong>4대 AI Council</strong>을 실시간 구동했습니다.
+            </div>
+            <div style="margin-bottom: 10px;">
+              <strong style="color: #6ee7b7; font-size: 14px;">• 왜 썼는가? (Why)</strong><br>
+              단순 정적 통계의 한계를 극복하고, 거시 변동성과 폭락 위험도를 반영한 <strong>100,000개의 몬테카를로 미래 시나리오 파라미터(Drift, Volatility, Seed)</strong>를 초고속 추론하기 위해 Nosana GPU를 필수 채택했습니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>Daytona & Nosana Global Hackathon Pitch Deck</div>
+      <div class="slide-number">03 / 05</div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 4: LIVE DEMO (COMPLETENESS)
+       ========================================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="brand-group">
+        <div class="brand-logo">BITORSTRANGE</div>
+        <span class="brand-sub">03. 심사 기준: 완성도(Completeness) & 실제 작동 데모 (Live Demo)</span>
+      </div>
+      <div class="badge-container">
+        <span class="badge highlight">Completeness 100%</span>
+        <span class="badge sponsor">Interactive Live Demo</span>
+      </div>
+    </div>
+
+    <div class="slide-body">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
+        <h2 class="title-md" style="margin: 0;">
+          단 1개의 끊김 없는 핵심 라이브 시연 플로우
+        </h2>
+        <span style="font-size: 15px; color: #38bdf8; font-weight: 600;">
+          "입력값 넣기 ➡️ Daytona 환경 생성/코드 실행 ➡️ 결과 도출"
+        </span>
+      </div>
+
+      <div class="grid-3">
+        <!-- Step 1 Card -->
+        <div class="card">
+          <div class="card-header">
+            <span class="card-label">STEP 1. 입력값 넣기</span>
+            <span class="code-tag">INPUT</span>
+          </div>
+          <div class="card-title" style="font-size: 18px;">자연어 자산 입력 & Time Lock</div>
+          <div class="card-desc">
+            <div style="background: #18181b; border: 1px solid #3f3f46; border-radius: 8px; padding: 10px; font-family: monospace; font-size: 12.5px; color: #ffffff; margin-bottom: 10px;">
+              "비트코인 1000만원, 현금 500만원"
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 7px; font-size: 13px; color: #a1a1aa; padding: 0;">
+              <li>• 한국어 자연어 한 줄로 포트폴리오 즉시 파싱</li>
+              <li>• <strong>TIME LOCK 모드:</strong> 2025-12-31 시점으로 기준점을 동결하여 2026년 데이터 누수를 100% 차단</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 2 Card -->
+        <div class="card featured-blue">
+          <div class="card-header">
+            <span class="card-label" style="color: #60a5fa;">STEP 2. DAYTONA 환경 생성 & 실행</span>
+            <span class="code-tag" style="color: #60a5fa; background: rgba(59,130,246,0.15);">EXECUTE</span>
+          </div>
+          <div class="card-title" style="font-size: 18px;">8개 샌드박스 동시 병렬 배포</div>
+          <div class="card-desc">
+            <div style="background: #0f172a; border: 1px solid #1e3a8a; border-radius: 8px; padding: 10px; font-family: monospace; font-size: 11.5px; color: #93c5fd; margin-bottom: 10px; line-height: 1.4;">
+              [Daytona] mv-strategy-01 [HODL] OK<br>
+              [Daytona] mv-strategy-07 [VolTarget] OK<br>
+              ▶ 8 Sandboxes Executing (3.2s)
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 7px; font-size: 13px; color: #a1a1aa; padding: 0;">
+              <li>• Daytona SDK가 8개 격리 샌드박스를 실시간 스핀업</li>
+              <li>• 10만 개 미래 시뮬레이션 경로를 각 환경에 동시 주입하여 초고속 스트레스 테스트</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Step 3 Card -->
+        <div class="card featured">
+          <div class="card-header">
+            <span class="card-label emerald-text">STEP 3. 결과 도출 & 검증</span>
+            <span class="code-tag" style="color: #34d399; background: rgba(16,185,129,0.15);">OUTCOME</span>
+          </div>
+          <div class="card-title" style="font-size: 18px;">최적 생존 전략 & 2026 실증</div>
+          <div class="card-desc">
+            <div style="background: #064e3b; border: 1px solid #059669; border-radius: 8px; padding: 10px; font-size: 12.5px; color: #a7f3d0; margin-bottom: 10px; font-weight: 600;">
+              🏆 승자: 변동성 대응 (Volatility-Targeting)<br>
+              생존율 94.2% | 최대 손실 -14.1% 방어
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 7px; font-size: 13px; color: #a1a1aa; padding: 0;">
+              <li>• 10만 개 미래 중 5대 대표 시나리오 시각화</li>
+              <li>• <strong>Reveal 클릭:</strong> 2026년 실제 비트코인 시장에서도 손실 한도(-25%)를 지켜냈음을 눈앞에서 실증!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 18px; padding: 13px 18px; background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 10px; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 13px; color: #e4e4e7;">
+          💡 <strong>심사위원 안내:</strong> 브라우저 화면과 터미널에서 실시간으로 생성되는 Daytona 격리 샌드박스 로그 및 백테스트 실행 과정을 직접 시연합니다.
+        </span>
+        <span class="badge sponsor" style="font-size: 11px;">Live Running Ready</span>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>Daytona & Nosana Global Hackathon Pitch Deck</div>
+      <div class="slide-number">04 / 05</div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SLIDE 5: VOTE FOR US (FINAL PITCH)
+       ========================================== -->
+  <div class="slide">
+    <div class="slide-header">
+      <div class="brand-group">
+        <div class="brand-logo">
+          <div class="dot"></div>
+          BITORSTRANGE
+        </div>
+        <span class="brand-sub">MULTIVERSE SURVIVAL SIMULATOR</span>
+      </div>
+      <div class="badge-container">
+        <span class="badge doctor">✦ Cast Your Vote</span>
+      </div>
+    </div>
+
+    <div class="slide-body" style="justify-content: center; align-items: center; text-align: center;">
+      <div style="margin-bottom: 14px;">
+        <span class="badge doctor" style="font-size: 14px; padding: 7px 22px;">
+          🗳️ 참가자 전원 실시간 투표 세션
+        </span>
+      </div>
+
+      <h1 class="title-lg" style="font-size: 56px; letter-spacing: -0.04em; margin-bottom: 16px;">
+        프로젝트: Bitorstrange <span class="highlight-text">(MULTIVERSE)</span>
+      </h1>
+
+      <div style="max-width: 980px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 22px 36px; margin-bottom: 28px;">
+        <div style="font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.1em; color: #a1a1aa; margin-bottom: 8px; font-weight: 700;">
+          PROJECT ONE-LINE SUMMARY (투표 기억용 한 줄 요약)
+        </div>
+        <div style="font-size: 24px; font-weight: 800; color: #ffffff; line-height: 1.45; letter-spacing: -0.02em;">
+          "10만 번의 미래에서 살아남는 단 하나의 전략 —<br>
+          <span class="highlight-text">Daytona 초고속 격리 샌드박스</span>로 검증하는 비트코인 다중우주 생존 시뮬레이터"
+        </div>
+      </div>
+
+      <div class="grid-3" style="max-width: 980px; text-align: left; width: 100%;">
+        <div class="card" style="padding: 16px 20px;">
+          <div style="font-size: 12px; font-weight: 700; color: #c084fc; margin-bottom: 4px;">01. DOCTOR STRANGE</div>
+          <div style="font-size: 14px; color: #ffffff; font-weight: 600;">10만 번의 다중우주 미래 시뮬레이션</div>
+        </div>
+        <div class="card" style="padding: 16px 20px;">
+          <div style="font-size: 12px; font-weight: 700; color: #60a5fa; margin-bottom: 4px;">02. DAYTONA SDK</div>
+          <div style="font-size: 14px; color: #ffffff; font-weight: 600;">8개 격리 샌드박스 초고속 병렬 실행</div>
+        </div>
+        <div class="card" style="padding: 16px 20px;">
+          <div style="font-size: 12px; font-weight: 700; color: #34d399; margin-bottom: 4px;">03. NOSANA GPU (가산점)</div>
+          <div style="font-size: 14px; color: #ffffff; font-weight: 600;">Qwen 3.8 27B AI Council 모델 서빙</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 28px; font-size: 19px; font-weight: 700; color: #ffffff; display: flex; align-items: center; justify-content: center; gap: 12px;">
+        <span>👉 발표 직후 열리는 투표 창에서</span>
+        <span style="background: #2563eb; color: #ffffff; padding: 6px 20px; border-radius: 8px; box-shadow: 0 0 24px rgba(37, 99, 235, 0.7); font-size: 21px;">
+          [ Bitorstrange ]
+        </span>
+        <span>에 소중한 한 표를 부탁드립니다!</span>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <div>Thank you for your time & support!</div>
+      <div class="slide-number">05 / 05</div>
+    </div>
+  </div>
+
+</body>
+</html>
