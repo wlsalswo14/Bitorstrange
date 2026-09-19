@@ -302,7 +302,7 @@ export function App() {
                 <div className="text-sm font-medium text-white">8가지 방법을 10만 개 미래에서 시험하고 있어요</div>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
                   {[
-                    '그냥 보유하기',
+                    '변동성 돌파 매수',
                     '일정 금액씩 나눠 사기',
                     'BTC 80% 유지하기',
                     'BTC 60% 유지하기',
@@ -350,10 +350,10 @@ export function App() {
                 </div>
               </div>
 
-              {/* Comparison vs HODL (PRD Section 18) */}
+              {/* Comparison vs Baseline (PRD Section 18) */}
               <div className="pt-6 border-t border-zinc-800/80 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-800 flex items-center justify-between">
-                  <span className="text-zinc-400">그냥 Bitcoin 보유하기</span>
+                  <span className="text-zinc-400">{result.hodlBaseline.name}</span>
                   <span className="font-mono text-zinc-300 font-semibold">{pct(result.hodlBaseline.survivalRate)}</span>
                 </div>
                 <div className="p-3.5 rounded-lg bg-zinc-950 border border-zinc-800 flex items-center justify-between">

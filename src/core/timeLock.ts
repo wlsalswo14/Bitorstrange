@@ -38,13 +38,17 @@ export function createTimeLockSeal(
 }
 
 export function evaluateOnRealCandles(
-  strategyId: StrategyId,
+  strategyId: StrategyId | 'hodl',
   portfolio: Portfolio,
   candles: Array<{ date: string; close: number }>,
   maxLoss = 0.25,
   transactionCost = 0.001,
 ) {
-  const strategy = STRATEGIES.find((s) => s.id === strategyId)
+  const strategy =
+    strategyId === 'hodl'
+      ? { id: 'hodl', name: '단순 시장 보유 (벤치마크)', targetBtcRatio: () => null }
+      : STRATEGIES.find((s) => s.id === strategyId)
+
   if (!strategy) throw new Error(`Strategy not found: ${strategyId}`)
 
   const prices = new Float64Array(candles.map((c) => c.close))

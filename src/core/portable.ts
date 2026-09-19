@@ -34,10 +34,6 @@ export function portableEvaluate(input: PortableInput): StrategyResult {
   }
 
   const meta: Record<StrategyId, { name: string; description: string }> = {
-    hodl: {
-      name: '그냥 보유하기',
-      description: '초기 비트코인과 현금을 그대로 유지하며 시장 전체의 변동을 감내하는 기본 방식입니다.',
-    },
     dca: {
       name: '일정 금액씩 나눠 사기',
       description: '초기 보유 현금을 30일에 걸쳐 균등하게 전액 분할 매수하여 비트코인 매입 단가를 평단화합니다.',
@@ -66,6 +62,10 @@ export function portableEvaluate(input: PortableInput): StrategyResult {
       name: '강한 상승세에 추가 매수하기',
       description: '비트코인이 최근 14일간 강한 상승 모멘텀을 보일 때 비중을 90% 이상으로 확대해 수익을 극대화합니다.',
     },
+    'vol-breakout': {
+      name: '변동성 돌파 매수하기',
+      description: '단기 가격 변동성을 돌파하는 강력한 추세 형성 시 비트코인 비중을 90%로 공격 진입합니다.',
+    },
   }
 
   function sma(prices: number[], end: number, window: number) {
@@ -91,7 +91,6 @@ export function portableEvaluate(input: PortableInput): StrategyResult {
     prices: number[],
     currentRatio: number,
   ): number | null {
-    if (id === 'hodl') return null
     if (id === 'dca') {
       return day <= 30 ? clamp(currentRatio + (1 - currentRatio) / Math.max(2, 31 - day)) : null
     }
@@ -121,6 +120,13 @@ export function portableEvaluate(input: PortableInput): StrategyResult {
       if (day < 14) return null
       const ret14 = prices[day] / prices[day - 14] - 1
       return ret14 > 0.08 ? 0.95 : 0.70
+    }
+
+    if (id === 'vol-breakout') {
+      if (day < 5) return null
+      const range = Math.abs(prices[day - 1] - prices[day - 2])
+      const breakout = prices[day] > prices[day - 1] + range * 0.5
+      return breakout ? 0.90 : 0.65
     }
 
     return null

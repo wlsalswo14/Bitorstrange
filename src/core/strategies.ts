@@ -36,12 +36,6 @@ function realizedVol(prices: Float64Array, end: number, window: number): number 
 
 export const STRATEGIES: Strategy[] = [
   {
-    id: 'hodl',
-    name: '그냥 보유하기',
-    description: '초기 비트코인과 현금을 그대로 유지하며 시장 전체의 변동을 감내하는 기본 방식입니다.',
-    targetBtcRatio: () => null,
-  },
-  {
     id: 'dca',
     name: '일정 금액씩 나눠 사기',
     description: '초기 보유 현금을 30일에 걸쳐 균등하게 전액 분할 매수하여 비트코인 매입 단가를 평단화합니다.',
@@ -101,6 +95,17 @@ export const STRATEGIES: Strategy[] = [
       if (day < 14) return null
       const return14d = prices[day] / prices[day - 14] - 1
       return return14d > 0.08 ? 0.95 : 0.70
+    },
+  },
+  {
+    id: 'vol-breakout',
+    name: '변동성 돌파 매수하기',
+    description: '단기 가격 변동성을 돌파하는 강력한 추세 형성 시 비트코인 비중을 90%로 공격 진입합니다.',
+    targetBtcRatio: ({ day, prices }) => {
+      if (day < 5) return null
+      const range = Math.abs(prices[day - 1] - prices[day - 2])
+      const breakout = prices[day] > prices[day - 1] + range * 0.5
+      return breakout ? 0.90 : 0.65
     },
   },
 ]

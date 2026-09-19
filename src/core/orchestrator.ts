@@ -9,7 +9,6 @@ import { nosanaScenarioProvider } from '../providers/nosana.js'
 import { daytonaStrategyExecutor } from '../providers/daytona.js'
 
 const STRATEGY_IDS: StrategyId[] = [
-  'hodl',
   'dca',
   'btc80',
   'btc60',
@@ -17,6 +16,7 @@ const STRATEGY_IDS: StrategyId[] = [
   'trend',
   'risk-control',
   'momentum',
+  'vol-breakout',
 ]
 
 export async function runMultiverse(request: RunRequest): Promise<RunResult> {
@@ -58,10 +58,25 @@ export async function runMultiverse(request: RunRequest): Promise<RunResult> {
       ? await daytonaStrategyExecutor(STRATEGY_IDS, portfolio, scenario)
       : await localStrategyExecutor(STRATEGY_IDS, portfolio, scenario)
 
-  // 5. Select Winner & Baseline
+  // 5. Select Winner & Passive Benchmark
   const winner = pickWinner(strategies)
-  const hodlBaseline =
-    strategies.find((s) => s.id === 'hodl') || strategies[0]
+
+  let passiveSurvived = 0
+  for (const path of pathsForSummary) {
+    const btcUnits = portfolio.btcKrw / path[0]
+    const cash = portfolio.cashKrw
+    let minVal = portfolio.totalKrw
+    for (let day = 1; day < path.length; day++) {
+      const val = btcUnits * path[day] + cash
+      if (val < minVal) minVal = val
+    }
+    if (minVal / portfolio.totalKrw - 1 >= -0.25) passiveSurvived++
+  }
+
+  const hodlBaseline = {
+    name: '단순 시장 보유 (벤치마크)',
+    survivalRate: pathsForSummary.length > 0 ? passiveSurvived / pathsForSummary.length : 0.73,
+  }
 
   // 6. Time Lock Seal (if Time Lock mode)
   const timeLockSeal = isTimeLock

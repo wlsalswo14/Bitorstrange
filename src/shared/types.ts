@@ -32,7 +32,6 @@ export type ScenarioSpec = {
 }
 
 export type StrategyId =
-  | 'hodl'
   | 'dca'
   | 'btc80'
   | 'btc60'
@@ -40,6 +39,7 @@ export type StrategyId =
   | 'trend'
   | 'risk-control'
   | 'momentum'
+  | 'vol-breakout'
 
 export type StrategyResult = {
   id: StrategyId
@@ -111,7 +111,10 @@ export type RunResult = {
   representativeFutures: RepresentativeFuture[]
   strategies: StrategyResult[]
   winner: StrategyResult
-  hodlBaseline: StrategyResult
+  hodlBaseline: {
+    name: string
+    survivalRate: number
+  }
   timeLockSeal?: TimeLockSeal
   engines: {
     scenarioProvider: string
